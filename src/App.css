@@ -1,38 +1,640 @@
+@font-face {
+  font-family: "PTSans";
+  src: url("./PTSans-Regular.ttf");
+}
+@font-face {
+  font-family: "Passion";
+  src: url("./PassionOne-Regular.ttf");
+}
+body, html, #root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .App {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "PTSans";
+  color: #fff;
+  background: #132639;
+  width: 100%;
+  height: 12%;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.menu ul {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  list-style: none;
+}
+.menu ul li {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.menu ul li:first-child {
+  font-weight: bold;
+  font-size: 32px;
+  font-style: italic;
+}
+.menu ul li span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  transition: all 0.2s;
+}
+.menu ul li span img {
+  display: block;
+  padding-right: 10px;
+}
+.menu ul li span:hover {
+  opacity: 0.8;
 }
 
-.App-link {
-  color: #61dafb;
+.hide {
+  width: 0% !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.choosedOption {
+  opacity: 0.2;
 }
+
+.editBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: PTSans;
+  flex-direction: column;
+  position: absolute;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #132639;
+  width: 60%;
+  height: 65%;
+  padding: 20px;
+  z-index: 99999;
+}
+.editBox .close {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 5%;
+  cursor: pointer;
+}
+.editBox h2 {
+  text-align: center;
+  font-size: 32px;
+  background: #fff;
+  color: #132639;
+  width: 40%;
+  padding: 10px;
+}
+.editBox .editElement {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2.5% 0;
+  width: 40%;
+  font-weight: bold;
+}
+.editBox .reverseBtn {
+  margin: 10% 0;
+}
+.editBox input {
+  border: none;
+  outline: none;
+  margin-left: 20px;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.settingsBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: PTSans;
+  flex-direction: column;
+  position: absolute;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #132639;
+  width: 50%;
+  height: 90%;
+  padding: 20px;
+  z-index: 99999;
+}
+.settingsBox .close {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+.settingsBox .close img {
+  cursor: pointer;
+}
+.settingsBox h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #132639;
+  padding: 10px;
+  margin: 0;
+  letter-spacing: 3px;
+  font-size: 45px;
+  width: 40%;
+}
+.settingsBox .settingsElement {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 18px;
+  width: 50%;
+  margin: 3% 0;
+  padding: 5% 0;
+  border-bottom: 2px solid #fff;
+}
+.settingsBox .settingsElement select {
+  margin-left: 50px;
+}
+.settingsBox h3 {
+  letter-spacing: 2px;
+  font-size: 22px;
+}
+.settingsBox select {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.settingsBox .addNewElement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  margin: 1% 0 5% 0;
+  width: 80%;
+  height: 50%;
+}
+.settingsBox .addNewElement .leftSide, .settingsBox .addNewElement .rightSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+}
+.settingsBox .addNewElement .leftSide .imgBox, .settingsBox .addNewElement .rightSide .imgBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10% 0;
+  width: 100%;
+  height: 20%;
+}
+.settingsBox .addNewElement .leftSide .imgBox img, .settingsBox .addNewElement .rightSide .imgBox img {
+  padding-right: 20px;
+}
+.settingsBox .addNewElement .leftSide .formElementBox, .settingsBox .addNewElement .rightSide .formElementBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10% 0;
+  width: 100%;
+  height: 20%;
+}
+.settingsBox .addNewElement .leftSide .formElementBox input[type=file], .settingsBox .addNewElement .rightSide .formElementBox input[type=file] {
+  margin-left: 30%;
+}
+.settingsBox .addNewElement input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 15px;
+}
+.settingsBox .addNewElement select {
+  border-radius: 2px;
+  padding: 5px;
+  width: 50%;
+  cursor: pointer;
+}
+
+.financeBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: PTSans;
+  width: 80%;
+  min-height: 60%;
+  height: auto;
+  background: #efefef;
+  margin-bottom: 2.5%;
+  overflow-y: scroll;
+}
+.financeBox #income {
+  border-right: 2px solid #ccc;
+}
+.financeBox table {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  transition: all 0.2s;
+}
+.financeBox table thead, .financeBox table tbody {
+  width: 100%;
+}
+.financeBox table thead tr, .financeBox table tbody tr {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.financeBox table thead th, .financeBox table tbody th {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  padding: 3% 0;
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: #1d1d1d;
+  text-transform: uppercase;
+}
+.financeBox table thead td, .financeBox table tbody td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 2% 0;
+  margin: 0;
+  border-bottom: 2px solid #ccc;
+}
+.financeBox table thead td .descWrap, .financeBox table tbody td .descWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5%;
+  padding: 10px 0;
+  color: #0d0d0d;
+  font-size: 16px;
+  width: 90%;
+}
+.financeBox table thead td .descWrap span, .financeBox table tbody td .descWrap span {
+  padding-right: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.financeBox table thead td .dataWrap, .financeBox table tbody td .dataWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.financeBox table thead td .categoryImage, .financeBox table tbody td .categoryImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  border-right: 2px solid #ccc;
+}
+.financeBox table thead td .categoryImage img, .financeBox table tbody td .categoryImage img {
+  max-width: 32px;
+}
+.financeBox table thead td .financeData, .financeBox table tbody td .financeData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  border-right: 2px solid #ccc;
+}
+.financeBox table thead td .financeData span, .financeBox table tbody td .financeData span {
+  font-weight: bold;
+  padding-right: 20px;
+}
+.financeBox table thead td .financeMenu, .financeBox table tbody td .financeMenu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15%;
+}
+.financeBox table thead td .financeMenu img, .financeBox table tbody td .financeMenu img {
+  cursor: pointer;
+  filter: invert(90%);
+}
+.financeBox table tbody {
+  height: 85%;
+}
+.financeBox table tbody tr {
+  min-height: 15%;
+}
+.financeBox table thead {
+  border: px solid #ccc;
+  height: 20%;
+}
+.financeBox table thead tr {
+  height: 100%;
+}
+
+#income .financeData {
+  color: #194d19;
+}
+
+#expenses .financeData {
+  color: darkred;
+}
+
+.balanceBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: PTSans;
+  font-size: 22px;
+  letter-spacing: 3px;
+  width: 50%;
+  height: 10%;
+  background: #132639;
+  margin: 1% 0;
+  color: #fff;
+}
+.balanceBox span {
+  padding: 0 20px;
+}
+.balanceBox .debit {
+  color: #ff4d4d;
+}
+.balanceBox .noDebit {
+  color: #194d19;
+}
+
+.buttonsBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+.btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-family: PTSans;
+  padding: 10px 15px;
+  font-size: 18px;
+  background: #132639;
+  color: #fff;
+  margin: 0 20px;
+  width: 30%;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+.btn:hover {
+  background: #0d1926;
+}
+
+.reverseBtn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-family: PTSans;
+  padding: 10px 15px;
+  font-size: 18px;
+  background: #fff;
+  color: #132639;
+  margin: 0 20px;
+  width: 30%;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+.reverseBtn:hover {
+  background: #f2f2f2;
+}
+
+.box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #132639;
+  color: #fff;
+  font-family: PTSans;
+  width: 70%;
+  padding: 10px;
+  z-index: 999;
+}
+.box .close {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+.box .close img {
+  cursor: pointer;
+}
+.box h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #132639;
+  padding: 10px 0;
+  width: 60%;
+  font-size: 32px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.box .reverseBtn {
+  margin: 3% 0;
+}
+.box .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6%;
+  font-size: 16px;
+  font-weight: bold;
+}
+.box .info img {
+  padding-right: 10px;
+}
+
+.dataWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  flex-direction: column;
+}
+.dataWrapper .data {
+  width: 70%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3% 0;
+  padding: 10px;
+  border-bottom: 1px solid #efefef;
+}
+.dataWrapper .data .formElemBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+.dataWrapper .data .formElemBox input[type=text] {
+  width: 100%;
+  border-radius: 1px;
+  border: none;
+  outline: none;
+  padding: 10px 5px;
+}
+.dataWrapper .data .formElemBox input[type=number] {
+  width: 60%;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+.dataWrapper .data .formElemBox select {
+  border: none;
+  outline: none;
+  padding: 2px;
+  width: 30%;
+  cursor: pointer;
+}
+.dataWrapper .data .formElemBox select:first-child {
+  width: 100%;
+  border-radius: 3px;
+}
+.dataWrapper .data .formElemBox textarea {
+  resize: none;
+  width: 100%;
+  border-radius: 1px;
+  border: none;
+  outline: none;
+}
+.dataWrapper .data .dataTitle {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.overlayer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.7;
+}
+
+.calendarOn {
+  width: 20%;
+}
+
+.calendarOff {
+  width: 0%;
+}
+
+.calendarBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  font-family: "PTSans";
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #132639;
+  transition: all 0.2s;
+  -webkit-box-shadow: 7px 7px 14px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 7px 14px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 7px 14px -5px rgba(0, 0, 0, 0.75);
+}
+.calendarBox div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.calendarBox h3 {
+  font-weight: bold;
+  font-size: 32px;
+  font-style: italic;
+}
+.calendarBox ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.calendarBox ul .currentMonth {
+  background: transparent;
+  color: #fff;
+}
+.calendarBox ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4% 0;
+  background: #fff;
+  color: #132639;
+  width: 40%;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  transition: all 0.2s;
+}
+.calendarBox ul li:hover {
+  letter-spacing: 6px;
+}
+
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,575 @@
+$grey: #fff;
+$blue: #132639;
+$green: #194d19;
+$darkRed: darkred;
+$lightRed:#ff4d4d;
+
+
+@mixin flexCentering($justify, $align){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@font-face {
+    font-family: "PTSans";
+    src: url("./PTSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Passion";
+    src: url("./PassionOne-Regular.ttf");
+}
+
+body, html, #root{
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+.App{
+    @include flexCentering(flex-start, center);
+    flex-direction: column;
+    width:100%;
+    height:100%;
+    background: $grey;
+}
+
+.menu{
+    @include flexCentering(flex-start, center);
+    font-family: "PTSans";
+    color:$grey;
+    background: $blue;
+    width:100%;
+    height:12%;
+    text-align: center;
+    ul{
+        @include flexCentering(space-between, center);
+        width: 100%;
+        margin:0;
+        padding: 0;
+        font-size: 16px;
+        list-style: none;
+        li{
+            @include flexCentering(center, center);
+            cursor: pointer;
+            margin:0 10px;
+            &:first-child{
+                font-weight: bold;
+                font-size:32px;
+                font-style: italic;
+            }
+            span{
+                @include flexCentering(center, center);
+                margin:0 20px;
+                transition: all .2s;
+                img{
+                    display: block;
+                    padding-right:10px;
+                }
+                &:hover{
+                    opacity:0.8;
+                }
+            }
+        }
+    }
+}
+
+.hide{
+    width: 0% !important;
+}
+
+.choosedOption{
+    opacity:0.2;
+}
+
+.editBox{
+    @include flexCentering(flex-start, center);
+    font-family: PTSans;
+    flex-direction: column;
+    position: absolute;
+    color:#fff;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background: $blue;
+    width:60%;
+    height:65%;
+    padding:20px;
+    z-index:99999;
+    .close{
+        @include flexCentering(flex-end, center);
+        width:100%;
+        height:5%;
+        cursor: pointer;
+    }
+    h2{
+        text-align: center;
+        font-size:32px;
+        background: $grey;
+        color:$blue;
+        width:40%;
+        padding:10px;
+    }
+    .editElement{
+        @include flexCentering(space-around, center);
+        margin:2.5% 0;
+        width:40%;
+        font-weight: bold;
+    }
+    .reverseBtn{
+        margin:10% 0;
+    }
+    input{
+        border:none;
+        outline: none;
+        margin-left:20px;
+        padding:5px;
+        border-radius: 15px;
+    }
+}
+
+.settingsBox{
+    @include flexCentering(flex-start, center);
+    font-family: PTSans;
+    flex-direction: column;
+    position: absolute;
+    color:#fff;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background: $blue;
+    width:50%;
+    height:90%;
+    padding:20px;
+    z-index:99999;
+    .close{
+        @include flexCentering(flex-end, center);
+        width:100%;
+        img{
+            cursor: pointer;
+        }
+    }
+    h2{
+        @include flexCentering(center, center);
+        background: #fff;
+        color:$blue;
+        padding:10px;
+        margin:0;
+        letter-spacing: 3px;
+        font-size:45px;
+        width:40%;
+    }
+    .settingsElement{
+        @include flexCentering(space-around, center);
+        font-size:18px;
+        width:50%;
+        margin:3% 0;
+        padding:5% 0;
+        border-bottom:2px solid #fff;
+        select{
+            margin-left:50px;
+        }
+    }
+    h3{
+        letter-spacing: 2px;
+        font-size:22px;
+    }
+    select{
+        cursor: pointer;
+        border: none;
+        outline: none;
+    }
+    .addNewElement{
+        @include flexCentering(center, center);
+        font-size:18px;
+        margin:1% 0 5% 0;
+        width:80%;
+        height:50%;
+        .leftSide, .rightSide{
+            @include flexCentering(center, center);
+            //background: red;
+            width:50%;
+            height:100%;
+            flex-direction: column;
+            .imgBox{
+                @include flexCentering(center, center);
+                margin:10% 0;
+                width:100%;
+                height:20%;
+                img{
+                    padding-right: 20px;
+                }
+            }
+            .formElementBox{
+                @include flexCentering(center, center);
+                margin:10% 0;
+                width:100%;
+                height:20%;
+                input[type="file"]{
+                    margin-left:30%;
+                }
+            }
+           
+        }
+        input{
+            border: none;
+            outline: none;
+            padding:5px;
+            border-radius: 15px;
+        }
+        select{
+            border-radius: 2px;
+            padding:5px;
+            width:50%;
+            cursor: pointer;
+        }
+    }
+}
+
+.financeBox{
+    @include flexCentering(flex-start, flex-start);
+    font-family: PTSans;
+    width:80%;
+    min-height:60%;
+    height: auto;
+    background: #efefef;
+    margin-bottom:2.5%;
+    overflow-y: scroll;
+    #income{
+        border-right: 2px solid #ccc;
+    }
+    table{
+        @include flexCentering(flex-start, flex-start);
+        flex-direction: column;
+        width: 100%;
+        min-height: 100%;
+        transition: all .2s;
+       
+        thead, tbody{
+            width:100%;
+            tr{
+                @include flexCentering(space-around, center);
+                flex-direction: column;
+                width:100%;
+            }
+            th{
+                @include flexCentering(center, center);
+                width:100%;
+                height:100%;
+                background: #ccc;
+                padding: 3% 0;
+                margin: 0;
+                font-size:22px;
+                letter-spacing: 3px;
+                color:#1d1d1d;
+                text-transform: uppercase;
+            }
+            td{
+                @include flexCentering(center, center);
+                flex-direction: column;
+                width:100%;
+                height:100%;
+                padding:2% 0;
+                margin: 0;
+                border-bottom: 2px solid #ccc;
+                .descWrap{
+                    @include flexCentering(center, center);
+                    margin-top:2.5%;
+                    padding:10px 0;
+                    color:#0d0d0d;
+                    font-size:16px;
+                    width:90%;
+                    span{
+                        padding-right:20px;
+                        font-size:18px;
+                        font-weight: bold;
+                    }
+                }
+                .dataWrap{
+                    @include flexCentering(center, center);
+                    width: 100%;
+                }
+                .categoryImage{
+                    @include flexCentering(center, center);
+                    width:15%;
+                    border-right:2px solid #ccc;
+                    img{
+                        max-width: 32px;
+                    }
+                }
+                .financeData{
+                    @include flexCentering(center, center);
+                    width:35%;
+                    border-right:2px solid #ccc;
+                    span{
+                        font-weight: bold;
+                        padding-right:20px;
+                    }
+                }
+                .financeMenu{
+                    @include flexCentering(space-around, center);
+                    width:15%;
+                    img{
+                        cursor: pointer;
+                        filter:invert(90%)
+                    }
+                }
+            }
+        }
+        tbody{
+            height:85%;
+            tr{
+                min-height:15%;
+                
+            }
+        }
+        thead{
+            border:px solid #ccc;
+            height:20%;
+            tr{
+                height:100%;
+            }
+        }
+    }
+}
+
+#income .financeData{
+    color:$green;
+}
+
+#expenses .financeData{
+    color:$darkRed;
+}
+
+.balanceBox{
+    @include flexCentering(center, center);
+    font-family: PTSans;
+    font-size: 22px;
+    letter-spacing: 3px;
+    width:50%;
+    height:10%;
+    background: $blue;
+    margin:1% 0;
+    color:#fff;
+    span{
+        padding:0 20px;
+    }
+    .debit{
+        color:$lightRed;
+    }
+    .noDebit{
+        color:$green;
+    }
+}
+
+.buttonsBox{
+    @include flexCentering(space-between, center);
+    width:50%;
+}
+
+.btn{
+    @include flexCentering(space-around, center);
+    text-align: center;
+    font-family: PTSans;
+    padding:10px 15px;
+    font-size:18px;
+    background: $blue;
+    color:#fff;
+    margin:0 20px;
+    width:30%;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all .3s;
+    &:hover{
+        background: darken($blue, 5%);
+    }
+}
+
+.reverseBtn{
+    @include flexCentering(space-around, center);
+    text-align: center;
+    font-family: PTSans;
+    padding:10px 15px;
+    font-size:18px;
+    background: $grey;
+    color:$blue;
+    margin:0 20px;
+    width:30%;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all .3s;
+    &:hover{
+        background: darken($grey, 5%);
+    }
+}
+
+.box{
+    @include flexCentering(flex-start, center);
+    flex-direction: column;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background: $blue;
+    color:#fff;
+    font-family: PTSans;
+    width:70%;
+    padding:10px;
+    z-index:999;
+    .close{
+        @include flexCentering(flex-end, center);
+        width:100%;
+        img{
+            cursor: pointer;
+        }
+    }
+    h2{
+        @include flexCentering(center, center);
+        background: $grey;
+        color:$blue;
+        padding:10px 0;
+        width:60%;
+        font-size:32px;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+    .reverseBtn{
+        margin:3% 0;
+    }
+    .info{
+        @include flexCentering(center, center);
+        margin-top:6%;
+        font-size:16px;
+        font-weight: bold;
+        img{
+            padding-right:10px;
+        }
+    }
+}
+
+.dataWrapper{
+    @include flexCentering(center, center);
+    width:80%;
+    height:80%;
+    flex-direction: column;
+    .data{
+        width:70%;
+        height:20%; 
+        @include flexCentering(space-between, center);
+        margin:3% 0;
+        padding:10px;
+        border-bottom: 1px solid #efefef;
+        .formElemBox{
+            @include flexCentering(space-between, center);
+            width:50%;
+            input[type="text"]{
+                width:100%;
+                border-radius: 1px;
+                border:none;
+                outline: none;
+                padding:10px 5px;
+            }
+            input[type="number"]{
+                width:60%;
+                border-radius: 15px;
+                border:none;
+                outline: none;
+                padding:5px;
+            }
+            select{
+                border:none;
+                outline: none;
+                padding:2px;
+                width:30%;
+                cursor: pointer;
+                &:first-child{
+                    width:100%;
+                    border-radius: 3px;
+                }
+            }
+            textarea{
+                resize:none;
+                width:100%;
+                border-radius: 1px;
+                border:none;
+                outline: none;
+            }
+        }
+        .dataTitle{
+             font-size:17px;
+             font-weight: bold;
+        }
+    }
+}
+
+.overlayer{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7;
+}
+
+.calendarOn{
+    width:20%;
+}
+
+.calendarOff{
+    width:0%;
+}
+
+.calendarBox{
+    @include flexCentering(flex-start, center);
+    flex-direction: column;
+    font-family: "PTSans";
+    color:#fff;
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    background: $blue;
+    transition: all .2s;
+    -webkit-box-shadow: 7px 7px 14px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 7px 14px -5px rgba(0,0,0,0.75);
+    box-shadow: 7px 7px 14px -5px rgba(0,0,0,0.75);
+    div{
+        @include flexCentering(flex-start, center);
+        flex-direction: column;
+        width:100%;
+    }
+    h3{
+        font-weight: bold;
+        font-size:32px;
+        font-style: italic;
+    }
+    ul{
+        @include flexCentering(center, center);
+        flex-direction: column;
+        width:100%;
+        margin:0;
+        padding:0;
+        list-style:none;
+        .currentMonth{
+            background: transparent;
+            color:#fff;
+        }
+        li{
+            @include flexCentering(center, center);
+            margin:4% 0;
+            background: $grey;
+            color:$blue;
+            width:40%;
+            cursor: pointer;
+            font-size:12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border:1px solid #fff;
+            padding:5px 10px;
+            transition: all .2s;
+            &:hover{
+                letter-spacing: 6px;
+            }
+        }
+    }
+}
