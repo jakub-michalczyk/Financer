@@ -10,8 +10,8 @@ class Calendar extends React.Component {
       let monthsNames = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
       let calendarElements = [];
 
-      for(let i = 0; i < 12; i++){
-        calendarElements.push(<CalendarElement change={this.props.changeMonth} key={i} curMonth={this.props.month} id={i} name={monthsNames[i]}/>)
+      for(let i = 1; i < 13; i++){
+        calendarElements.push(<CalendarElement change={this.props.changeMonth} key={i} curMonth={this.props.month} id={i} name={monthsNames[i - 1]}/>)
       }
 
        return <div>

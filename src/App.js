@@ -17,7 +17,7 @@ class App extends React.Component {
       editOn: true,
       fncForm: 0,
       newCategory: { icon: "./images/addedIcon.png" },
-      currentMonth: new Date().getMonth(),
+      currentMonth: new Date().getMonth() + 1,
       calendarOn: false,
       calculateCurrency: "PLN",
       settingsHidden: true,
@@ -73,6 +73,7 @@ class App extends React.Component {
       ]
     }
 
+    this.chooseFinanceForm = this.chooseFinanceForm.bind(this);
     this.closeEditBox = this.closeEditBox.bind(this);
     this.changeCalculationCurrency = this.changeCalculationCurrency.bind(this);
     this.changeCurrentMonth = this.changeCurrentMonth.bind(this);
@@ -210,57 +211,63 @@ class App extends React.Component {
         finBalance: localBalance
       });
     }
-
+ 
     await this.state.incomes.forEach(async (inc) => {
       let curr = inc.currency;
 
-      if (curr !== st) {
-        //Przewalutowanie
-
-        let data = await fetch(`https://api.exchangeratesapi.io/latest?base=${curr}`);
-        let fetched = await data.json();
-
-        (await function () {
-          for (const rate in fetched.rates) {
-            if (rate === st) {
-              localBalance += parseInt(inc.amount) * parseInt(fetched.rates[rate].toFixed(2));
+      if(inc.month === this.state.currentMonth){
+        if (curr !== st) {
+          //Przewalutowanie
+  
+          let data = await fetch(`https://api.exchangeratesapi.io/latest?base=${curr}`);
+          let fetched = await data.json();
+  
+          (await function () {
+            for (const rate in fetched.rates) {
+              if (rate === st) {
+                localBalance += parseInt(inc.amount) * parseInt(fetched.rates[rate].toFixed(2));
+              }
             }
-          }
-        })();
-      }
-      else {
-        localBalance += parseInt(inc.amount);
+          })();
+        }
+        else {
+          localBalance += parseInt(inc.amount);
+        }
+  
+        await this.setState({
+          finBalance: localBalance
+        });
       }
 
-      await this.setState({
-        finBalance: localBalance
-      });
     });
 
     await this.state.expenses.forEach(async (exp) => {
       let curr = exp.currency;
 
-      if (curr !== st) {
-        //Przewalutowanie
-
-        let data = await fetch(`https://api.exchangeratesapi.io/latest?base=${curr}`);
-        let fetched = await data.json();
-
-        (await function () {
-          for (const rate in fetched.rates) {
-            if (rate === st) {
-              localBalance -= parseInt(exp.amount) * (parseInt(fetched.rates[rate])).toFixed(2);
+      if(exp.month === this.currentMonth){
+        if (curr !== st) {
+          //Przewalutowanie
+  
+          let data = await fetch(`https://api.exchangeratesapi.io/latest?base=${curr}`);
+          let fetched = await data.json();
+  
+          (await function () {
+            for (const rate in fetched.rates) {
+              if (rate === st) {
+                localBalance -= parseInt(exp.amount) * (parseInt(fetched.rates[rate])).toFixed(2);
+              }
             }
-          }
-        })();
-      }
-      else {
-        localBalance -= parseInt(exp.amount);
+          })();
+        }
+        else {
+          localBalance -= parseInt(exp.amount);
+        }
+  
+        await this.setState({
+          finBalance: localBalance
+        });
       }
 
-      await this.setState({
-        finBalance: localBalance
-      });
     });
   }
 
@@ -364,6 +371,12 @@ class App extends React.Component {
     });
   }
 
+  chooseFinanceForm(e){
+    this.setState({
+      fncForm: parseInt(e.target.value)
+    })
+  }
+
   async saveNewCategory() {
     if (parseInt(this.state.fncForm) === 0) {
       await this.setState({
@@ -372,9 +385,13 @@ class App extends React.Component {
     }
     else if (parseInt(this.state.fncForm) === 1) {
       await this.setState({
-        categories: [[...this.state.categories[0]], [...this.state.categories[1]]]
+        categories: [[...this.state.categories[0]], [...this.state.categories[1], this.state.newCategory]]
       });
     }
+
+    this.setState({
+      fncForm: 0
+    });
 
     this.changeSettingsStatus();
     await this.saveToLocalStorage("categories", this.state.categories)
@@ -386,10 +403,12 @@ class App extends React.Component {
     });
   }
 
-  changeCurrentMonth(e) {
-    this.setState({
+  async changeCurrentMonth(e) {
+    await this.setState({
       currentMonth: parseInt(e.currentTarget.dataset.id)
     });
+
+    await this.calculateBalance(); 
   }
 
   render() {
