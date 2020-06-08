@@ -233,18 +233,16 @@ class App extends React.Component {
         else {
           localBalance += parseInt(inc.amount);
         }
-  
-        await this.setState({
-          finBalance: localBalance
-        });
       }
-
+      await this.setState({
+        finBalance: localBalance
+      });
     });
 
     await this.state.expenses.forEach(async (exp) => {
       let curr = exp.currency;
 
-      if(exp.month === this.currentMonth){
+      if(exp.month === this.state.currentMonth){
         if (curr !== st) {
           //Przewalutowanie
   
@@ -262,12 +260,10 @@ class App extends React.Component {
         else {
           localBalance -= parseInt(exp.amount);
         }
-  
-        await this.setState({
-          finBalance: localBalance
-        });
       }
-
+      await this.setState({
+        finBalance: localBalance
+      });
     });
   }
 

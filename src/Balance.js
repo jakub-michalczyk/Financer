@@ -4,7 +4,7 @@ class Balanse extends React.Component {
   determineMonth(){
       let monthsNames = ["styczniu", "lutym", "marcu", "kwietniu", "maju", "czerwcu", "lipcu", "sierpniu", "wrześniu", "październiku", "listopadzie", "grudniu"];
 
-      return monthsNames[this.props.monthID]
+      return monthsNames[this.props.monthID - 1]
   }
 
   render() {
