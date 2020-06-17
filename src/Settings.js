@@ -14,16 +14,6 @@ class Settings extends React.Component {
       <div className="settingsBox">
         <div className="close"><img onClick={this.props.changeStatus} src={close} alt="Zamknij"/></div>
         <h2>Ustawienia</h2>
-        <div className="settingsElement">
-            <img src={calculate} alt="Oblicz"/>
-            Przeliczaj saldo na 
-            <select value="PLN" onChange={this.props.changeCalcCurrency}>
-                <option>PLN</option>
-                <option>USD</option>
-                <option>EUR</option>
-                <option>GBP</option>
-            </select>
-        </div>
         <h3>Dodaj nową kategorię przychodu lub wydatku</h3>
         <div className="addNewElement">
             <div className="leftSide">

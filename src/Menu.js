@@ -19,18 +19,18 @@ class Menu extends React.Component {
       <ul>
         <li>financer.io</li>
         <li>
-          <span className={this.props.hideTable.income ? "choosedOption" : null} onClick={() => this.props.hide("income")}>
-            <img src={expen} alt="Wydatki"/> Wydatki  
-          </span>
-          <span className={this.props.hideTable.expenses ? "choosedOption" : null} onClick={() => this.props.hide("expenses")}>
-            <img src={income} alt="Przychody"/> Przychody
-          </span> 
-          <span onClick={this.props.calendarSwitch} className={this.props.calendarStatus ? "choosedOption" : null}>
-            <img src={calendar} alt="Kalendarz"/> Kalendarz
-          </span>
-          <span onClick={this.props.settingsStatus}>
-            <img src={settings} alt="Ustawienia"/> Ustawienia
-          </span> 
+          <div className={this.props.hideTable.income ? "choosedOption" : null} onClick={() => this.props.hide("income")}>
+            <img src={expen} alt="Wydatki"/> <span>Wydatki</span>  
+          </div>
+          <div className={this.props.hideTable.expenses ? "choosedOption" : null} onClick={() => this.props.hide("expenses")}>
+            <img src={income} alt="Przychody"/> <span>Przychody</span>
+          </div> 
+          <div onClick={this.props.calendarSwitch} className={this.props.calendarStatus ? "choosedOption" : null}>
+            <img src={calendar} alt="Kalendarz"/> <span>Kalendarz</span>
+          </div>
+          <div onClick={this.props.settingsStatus}>
+            <img src={settings} alt="Ustawienia"/> <span>Ustawienia</span>
+          </div> 
         </li>
       </ul>
     </nav>
