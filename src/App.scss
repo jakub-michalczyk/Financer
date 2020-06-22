@@ -4,9 +4,9 @@ $green: #194d19;
 $darkRed: darkred;
 $lightRed:#ff4d4d;
 
-
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 812px) {
     .menu{
+        min-height:15% !important;
         span{
             display: none !important;
         }
@@ -57,14 +57,17 @@ $lightRed:#ff4d4d;
         align-items: center !important;
         width:80% !important;
         padding:0 5% !important;
+        min-height: 10% !important;
     }
     .financeBox{
         width: 95% !important;
     }
     .buttonsBox{
-        width: auto !important;
+        padding:5% 0 !important;
+        justify-content: center !important;
+        width: 100% !important;
         .btn{
-            width:50% !important;
+            width:30% !important;
         }
     }
     .box{
@@ -74,6 +77,8 @@ $lightRed:#ff4d4d;
         }
     }
     .calendarBox{
+        min-height: 100% !important;
+        height: auto !important;
         h3{
             font-size:20px !important;
         }
@@ -82,6 +87,22 @@ $lightRed:#ff4d4d;
                 width:70% !important;
                 font-size:10px !important;
             }
+        }
+    }
+}
+
+
+@media only screen and (orientation: landscape) and (max-width: 812px){
+    .settingsBox, .box{
+        width:100% !important;
+        min-height: 100% !important;
+        top:0 !important;
+        left:0 !important;
+        transform: none !important;
+        padding:2% 0 !important;
+        height: auto !important;
+        .close{
+            width:90% !important;
         }
     }
 }
