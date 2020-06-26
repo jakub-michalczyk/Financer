@@ -322,8 +322,16 @@ class App extends React.Component {
   }
 
   async saveUpdate() {
+    let getPreviousValues = [];
+
+    for(let key in this.state){
+      if(key === this.state.editedFnc.type){
+        getPreviousValues = this.state[key].filter(val => val.desc !== this.state.editedFnc.desc && val.name !== this.state.editedFnc.name)
+      }
+    }
+
     await this.setState({
-      [this.state.editedFnc.type]: [{ ...this.state.editedFnc, type: undefined }]
+      [this.state.editedFnc.type]: [...getPreviousValues, { ...this.state.editedFnc, type: undefined }]
     });
 
     await this.setState({
